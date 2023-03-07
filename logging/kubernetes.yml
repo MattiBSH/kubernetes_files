@@ -31,7 +31,7 @@ spec:
         imagePullPolicy: Always
         name: logging-service
         ports:
-        - containerPort: 15411
+        - containerPort: 8095
           name: http
           protocol: TCP
 ---
