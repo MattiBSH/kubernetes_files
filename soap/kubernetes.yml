@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-07 - 09:16:55 +0000
+    app.quarkus.io/build-timestamp: 2023-03-07 - 13:17:37 +0000
   labels:
-    app.kubernetes.io/version: 1.0.4
     app.kubernetes.io/name: soap-service
+    app.kubernetes.io/version: 1.0.4
   name: soap-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/version: 1.0.4
       app.kubernetes.io/name: soap-service
+      app.kubernetes.io/version: 1.0.4
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-07 - 09:16:58 +0000
+        app.quarkus.io/build-timestamp: 2023-03-07 - 13:17:37 +0000
       labels:
-        app.kubernetes.io/version: 1.0.4
         app.kubernetes.io/name: soap-service
+        app.kubernetes.io/version: 1.0.4
     spec:
       containers:
       - env:
@@ -34,11 +34,12 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
+---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-07 - 09:16:55 +0000
+    app.quarkus.io/build-timestamp: 2023-03-07 - 13:17:37 +0000
   labels:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
