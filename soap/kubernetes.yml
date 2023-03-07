@@ -1,0 +1,55 @@
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      app.quarkus.io/build-timestamp: 2023-03-07 - 09:16:55 +0000
+    labels:
+      app.kubernetes.io/version: 1.0.4
+      app.kubernetes.io/name: soap-service
+    name: soap-service
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app.kubernetes.io/version: 1.0.4
+        app.kubernetes.io/name: soap-service
+    template:
+      metadata:
+        annotations:
+          app.quarkus.io/build-timestamp: 2023-03-07 - 09:16:55 +0000
+        labels:
+          app.kubernetes.io/version: 1.0.4
+          app.kubernetes.io/name: soap-service
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: sbsip-jenkins.convergens.dk:18444/soap-service:1.0.4
+          imagePullPolicy: Always
+          name: soap-service
+          ports:
+          - containerPort: 8080
+            name: http
+            protocol: TCP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      app.quarkus.io/build-timestamp: 2023-03-07 - 09:16:55 +0000
+    labels:
+      app.kubernetes.io/name: soap-service
+      app.kubernetes.io/version: 1.0.4
+    name: soap-service
+  spec:
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8080
+    selector:
+      app.kubernetes.io/name: soap-service
+      app.kubernetes.io/version: 1.0.4
+    type: ClusterIP

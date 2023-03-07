@@ -1,0 +1,55 @@
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      app.quarkus.io/build-timestamp: 2023-03-07 - 09:14:13 +0000
+    labels:
+      app.kubernetes.io/name: database-service
+      app.kubernetes.io/version: 1.0.6
+    name: database-service
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app.kubernetes.io/name: database-service
+        app.kubernetes.io/version: 1.0.6
+    template:
+      metadata:
+        annotations:
+          app.quarkus.io/build-timestamp: 2023-03-07 - 09:14:13 +0000
+        labels:
+          app.kubernetes.io/name: database-service
+          app.kubernetes.io/version: 1.0.6
+      spec:
+        containers:
+        - env:
+          - name: KUBERNETES_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          image: sbsip-jenkins.convergens.dk:18444/database-service:1.0.6
+          imagePullPolicy: Always
+          name: database-service
+          ports:
+          - containerPort: 8086
+            name: http
+            protocol: TCP
+- apiVersion: v1
+  kind: Service
+  metadata:
+    annotations:
+      app.quarkus.io/build-timestamp: 2023-03-07 - 09:14:13 +0000
+    labels:
+      app.kubernetes.io/name: database-service
+      app.kubernetes.io/version: 1.0.6
+    name: database-service
+  spec:
+    ports:
+    - name: http
+      port: 80
+      protocol: TCP
+      targetPort: 8086
+    selector:
+      app.kubernetes.io/name: database-service
+      app.kubernetes.io/version: 1.0.6
+    type: ClusterIP
