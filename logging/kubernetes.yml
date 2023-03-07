@@ -49,7 +49,7 @@ spec:
   - name: http
     port: 80
     protocol: TCP
-    targetPort: 15411
+    targetPort: 8095
   selector:
     app.kubernetes.io/name: logging-service
     app.kubernetes.io/version: 1.0.0
