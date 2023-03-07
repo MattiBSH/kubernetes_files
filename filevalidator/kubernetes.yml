@@ -1,9 +1,8 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-02-24 - 12:48:48 +0000
+    app.quarkus.io/build-timestamp: 2023-03-07 - 13:52:27 +0000
   labels:
     app.kubernetes.io/name: file-validator-service
     app.kubernetes.io/version: 1.0.0
@@ -17,40 +16,40 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-02-24 - 12:48:48 +0000
+        app.quarkus.io/build-timestamp: 2023-03-07 - 13:52:27 +0000
       labels:
         app.kubernetes.io/name: file-validator-service
         app.kubernetes.io/version: 1.0.0
     spec:
       containers:
-        - env:
-            - name: KUBERNETES_NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-          image: jenkins/file-validator-service:1.0.0
-          imagePullPolicy: Always
-          name: file-validator-service
-          ports:
-            - containerPort: 8089
-              name: http
-              protocol: TCP
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: sbsip-jenkins.convergens.dk:18444/file-validator-service:1.0.0
+        imagePullPolicy: Always
+        name: file-validator-service
+        ports:
+        - containerPort: 8089
+          name: http
+          protocol: TCP
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-02-24 - 12:48:48 +0000
+    app.quarkus.io/build-timestamp: 2023-03-07 - 13:52:27 +0000
   labels:
     app.kubernetes.io/name: file-validator-service
     app.kubernetes.io/version: 1.0.0
   name: file-validator-service
 spec:
   ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 8089
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8089
   selector:
     app.kubernetes.io/name: file-validator-service
     app.kubernetes.io/version: 1.0.0
