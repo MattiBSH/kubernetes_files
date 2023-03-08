@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2023-03-08 - 15:16:09 +0000
+  labels:
+    app.kubernetes.io/version: 1.0.2
+    app.kubernetes.io/name: kvittering-service
+  name: kvittering-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/version: 1.0.2
+      app.kubernetes.io/name: kvittering-service
+  template:
+    metadata:
+      annotations:
+        app.quarkus.io/build-timestamp: 2023-03-08 - 15:16:09 +0000
+      labels:
+        app.kubernetes.io/version: 1.0.2
+        app.kubernetes.io/name: kvittering-service
+    spec:
+      containers:
+      - env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        image: sbsip-jenkins.convergens.dk:18444/kvittering-service:1.0.2
+        imagePullPolicy: Always
+        name: kvittering-service
+        ports:
+        - containerPort: 8083
+          name: http
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2023-03-08 - 15:16:09 +0000
+  labels:
+    app.kubernetes.io/name: kvittering-service
+    app.kubernetes.io/version: 1.0.2
+  name: kvittering-service
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 8083
+  selector:
+    app.kubernetes.io/name: kvittering-service
+    app.kubernetes.io/version: 1.0.2
+  type: ClusterIP
