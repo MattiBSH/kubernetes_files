@@ -1,6 +1,8 @@
 argo-cd:
   dex:
     enabled: false
+  service:
+    type: NodePort
   server:
     extraArgs:
       - --insecure
