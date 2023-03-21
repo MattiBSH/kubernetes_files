@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-21 - 09:22:55 +0000
+    app.quarkus.io/build-timestamp: 2023-03-21 - 14:01:50 +0000
   labels:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-21 - 09:22:55 +0000
+        app.quarkus.io/build-timestamp: 2023-03-21 - 14:01:50 +0000
       labels:
         app.kubernetes.io/name: soap-service
         app.kubernetes.io/version: 1.0.4
@@ -34,12 +34,35 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
+      serviceAccountName: soap-service
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2023-03-21 - 14:01:50 +0000
+  labels:
+    app.kubernetes.io/name: soap-service
+    app.kubernetes.io/version: 1.0.4
+  name: soap-service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: soap-service-view
+roleRef:
+  kind: ClusterRole
+  apiGroup: rbac.authorization.k8s.io
+  name: view
+subjects:
+- kind: ServiceAccount
+  name: soap-service
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-21 - 09:22:55 +0000
+    app.quarkus.io/build-timestamp: 2023-03-21 - 14:01:50 +0000
   labels:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
