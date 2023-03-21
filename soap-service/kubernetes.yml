@@ -34,6 +34,8 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
+        imagePullSecrets:
+        - name: githubpackage
 ---
 apiVersion: v1
 kind: Service
