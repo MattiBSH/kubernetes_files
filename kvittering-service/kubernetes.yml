@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-13 - 12:14:26 +0000
+    app.quarkus.io/build-timestamp: 2023-03-21 - 11:55:27 +0000
   labels:
     app.kubernetes.io/version: 1.0.2
     app.kubernetes.io/name: kvittering-service
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-13 - 12:14:26 +0000
+        app.quarkus.io/build-timestamp: 2023-03-21 - 11:55:27 +0000
       labels:
         app.kubernetes.io/version: 1.0.2
         app.kubernetes.io/name: kvittering-service
@@ -27,7 +27,7 @@ spec:
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: sbsip-jenkins.convergens.dk:18444/kvittering-service:1.0.2
+        image: ghcr.io/dafolo-digital/kvittering-service:1.0.2
         imagePullPolicy: Always
         name: kvittering-service
         ports:
@@ -39,7 +39,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-13 - 12:14:26 +0000
+    app.quarkus.io/build-timestamp: 2023-03-21 - 11:55:27 +0000
   labels:
     app.kubernetes.io/name: kvittering-service
     app.kubernetes.io/version: 1.0.2
