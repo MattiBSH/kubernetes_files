@@ -29,13 +29,13 @@ spec:
               fieldPath: metadata.namespace
         image: ghcr.io/dafolo-digital/soap-service:1.0.4
         imagePullPolicy: Always
+        imagePullSecrets:
+        - name: githubpackage
         name: soap-service
         ports:
         - containerPort: 8080
           name: http
           protocol: TCP
-        imagePullSecrets:
-        - name: githubpackage
 ---
 apiVersion: v1
 kind: Service
