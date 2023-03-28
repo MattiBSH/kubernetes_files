@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-27 - 13:50:11 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 10:38:52 +0000
   labels:
     app.kubernetes.io/version: 1.0.4
     app.kubernetes.io/name: soap-service
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-27 - 13:50:11 +0000
+        app.quarkus.io/build-timestamp: 2023-03-28 - 10:38:52 +0000
       labels:
         app.kubernetes.io/version: 1.0.4
         app.kubernetes.io/name: soap-service
@@ -34,13 +34,36 @@ spec:
         - containerPort: 8080
           name: http
           protocol: TCP
+      imagePullSecrets:
+      - name: regcred
       serviceAccountName: soap-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.quarkus.io/build-timestamp: 2023-03-28 - 10:38:52 +0000
+  labels:
+    app.kubernetes.io/name: soap-service
+    app.kubernetes.io/version: 1.0.4
+  name: soap-service
+spec:
+  ports:
+  - name: http
+    nodePort: 32001
+    port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app.kubernetes.io/name: soap-service
+    app.kubernetes.io/version: 1.0.4
+  type: NodePort
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-27 - 13:50:11 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 10:38:52 +0000
   labels:
     app.kubernetes.io/version: 1.0.4
     app.kubernetes.io/name: soap-service
@@ -57,24 +80,3 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: soap-service
----
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-    app.quarkus.io/build-timestamp: 2023-03-27 - 13:50:11 +0000
-  labels:
-    app.kubernetes.io/name: soap-service
-    app.kubernetes.io/version: 1.0.4
-  name: soap-service
-spec:
-  ports:
-  - name: http
-    nodePort: 32001
-    port: 80
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app.kubernetes.io/name: soap-service
-    app.kubernetes.io/version: 1.0.4
-  type: NodePort
