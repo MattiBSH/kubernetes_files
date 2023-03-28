@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-24 - 09:32:44 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 10:11:44 +0000
   labels:
-    app.kubernetes.io/name: logging-service
     app.kubernetes.io/version: 1.0.0
+    app.kubernetes.io/name: logging-service
   name: logging-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: logging-service
       app.kubernetes.io/version: 1.0.0
+      app.kubernetes.io/name: logging-service
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-24 - 09:32:44 +0000
+        app.quarkus.io/build-timestamp: 2023-03-28 - 10:11:44 +0000
       labels:
-        app.kubernetes.io/name: logging-service
         app.kubernetes.io/version: 1.0.0
+        app.kubernetes.io/name: logging-service
     spec:
       containers:
       - env:
@@ -34,12 +34,14 @@ spec:
         - containerPort: 8095
           name: http
           protocol: TCP
+      imagePullSecrets:
+      - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-24 - 09:32:44 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 10:11:44 +0000
   labels:
     app.kubernetes.io/name: logging-service
     app.kubernetes.io/version: 1.0.0
