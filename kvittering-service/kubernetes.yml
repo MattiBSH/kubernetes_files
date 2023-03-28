@@ -22,7 +22,7 @@ spec:
         app.kubernetes.io/name: kvittering-service
     spec:
       imagePullSecrets:
-      -name: regcred
+      - name: regcred
       containers:
       - env:
         - name: KUBERNETES_NAMESPACE
