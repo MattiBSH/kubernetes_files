@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-28 - 09:33:49 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 09:48:34 +0000
   labels:
     app.kubernetes.io/version: 1.0.2
     app.kubernetes.io/name: kvittering-service
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-28 - 09:33:49 +0000
+        app.quarkus.io/build-timestamp: 2023-03-28 - 09:48:34 +0000
       labels:
         app.kubernetes.io/version: 1.0.2
         app.kubernetes.io/name: kvittering-service
@@ -34,12 +34,14 @@ spec:
         - containerPort: 8083
           name: http
           protocol: TCP
+      imagePullSecrets:
+      - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-28 - 09:33:49 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 09:48:34 +0000
   labels:
     app.kubernetes.io/name: kvittering-service
     app.kubernetes.io/version: 1.0.2
