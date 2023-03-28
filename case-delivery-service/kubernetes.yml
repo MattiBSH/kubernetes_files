@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-27 - 13:46:28 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 09:56:29 +0000
   labels:
     app.kubernetes.io/name: case-delivery-service
     app.kubernetes.io/version: 1.0.1
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-27 - 13:46:28 +0000
+        app.quarkus.io/build-timestamp: 2023-03-28 - 09:56:29 +0000
       labels:
         app.kubernetes.io/name: case-delivery-service
         app.kubernetes.io/version: 1.0.1
@@ -34,12 +34,14 @@ spec:
         - containerPort: 8092
           name: http
           protocol: TCP
+      imagePullSecrets:
+      - name: regcred
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-27 - 13:46:28 +0000
+    app.quarkus.io/build-timestamp: 2023-03-28 - 09:56:29 +0000
   labels:
     app.kubernetes.io/name: case-delivery-service
     app.kubernetes.io/version: 1.0.1
