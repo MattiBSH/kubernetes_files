@@ -19,6 +19,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: soap-service
+              name: file-validator-service
               port:
                 number: 80
