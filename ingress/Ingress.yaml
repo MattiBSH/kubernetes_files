@@ -21,4 +21,4 @@ spec:
             service:
               name: soap-service
               port:
-                number: 32001
+                number: 80
