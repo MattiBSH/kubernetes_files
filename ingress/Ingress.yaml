@@ -15,7 +15,7 @@ spec:
     - host: prak.digitor.dk
       http:
         paths:
-        - path: /
+        - path: /soap
           pathType: Prefix
           backend:
             service:
