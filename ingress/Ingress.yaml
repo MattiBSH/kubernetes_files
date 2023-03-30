@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: soap-service
+  name: ingress-service
   namespace: carejova
   annotations:
     kubernetes.io/ingress.class: "nginx"    
@@ -19,6 +19,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: quarkus-pipeline-test
+              name: soap-service
               port:
                 number: 80
