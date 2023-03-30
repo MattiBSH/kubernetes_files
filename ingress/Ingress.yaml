@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: quarkus-pipeline-test-ingress
+  namespace: carejova
+  annotations:
+    kubernetes.io/ingress.class: "nginx"    
+    cert-manager.io/issuer: "letsencrypt-prod"
+spec:
+  tls:
+  - hosts:
+    - prak.digitor.dk
+    secretName: quickstart-example-tls
+  rules:
+    - host: prak.digitor.dk
+      http:
+        paths:
+        - path: /soap
+          pathType: Prefix
+          backend:
+            service:
+              name: quarkus-pipeline-test
+              port:
+                number: 80
