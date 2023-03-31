@@ -19,6 +19,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: soap-service
+              name: quarkus-pipeline-test
               port:
                 number: 80
