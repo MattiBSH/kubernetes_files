@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-31 - 09:02:51 +0000
+    app.quarkus.io/build-timestamp: 2023-03-31 - 11:08:10 +0000
   labels:
-    app.kubernetes.io/version: 1.0.4
     app.kubernetes.io/name: soap-service
+    app.kubernetes.io/version: 1.0.4
   name: soap-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/version: 1.0.4
       app.kubernetes.io/name: soap-service
+      app.kubernetes.io/version: 1.0.4
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-03-31 - 09:02:51 +0000
+        app.quarkus.io/build-timestamp: 2023-03-31 - 11:08:10 +0000
       labels:
-        app.kubernetes.io/version: 1.0.4
         app.kubernetes.io/name: soap-service
+        app.kubernetes.io/version: 1.0.4
     spec:
       containers:
       - env:
@@ -36,13 +36,12 @@ spec:
           protocol: TCP
       imagePullSecrets:
       - name: regcred
-      serviceAccountName: soap-service
 ---
 apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-03-31 - 09:02:51 +0000
+    app.quarkus.io/build-timestamp: 2023-03-31 - 11:08:10 +0000
   labels:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
@@ -50,33 +49,10 @@ metadata:
 spec:
   ports:
   - name: http
-    nodePort: 32001
     port: 80
     protocol: TCP
     targetPort: 8080
   selector:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
-  type: NodePort
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  annotations:
-    app.quarkus.io/build-timestamp: 2023-03-31 - 09:02:51 +0000
-  labels:
-    app.kubernetes.io/version: 1.0.4
-    app.kubernetes.io/name: soap-service
-  name: soap-service
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: soap-service-view
-roleRef:
-  kind: ClusterRole
-  apiGroup: rbac.authorization.k8s.io
-  name: view
-subjects:
-- kind: ServiceAccount
-  name: soap-service
+  type: ClusterIP
