@@ -9,10 +9,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - prak.digitor.dk
+    - praktwo.digitor.dk
     secretName: quickstart-example-tls
   rules:
-    - host: prak.digitor.dk
+    - host: praktwo.digitor.dk
       http:
         paths:
         - path: /
