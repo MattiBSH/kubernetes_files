@@ -20,6 +20,6 @@ spec:
           pathType: Prefix
           backend:
             service:
-              name: sagdokindeks-api-producer
+              name: consul-consul-ui
               port:
                 number: 80
