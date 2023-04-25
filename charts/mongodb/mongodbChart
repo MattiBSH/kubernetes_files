@@ -1,0 +1,39 @@
+apiVersion: flux.weave.works/v1beta1
+kind: HelmRelease
+metadata:
+  name: mongodb-deployment
+  namespace: mongo
+spec:
+  releaseName: mongodb-deployment
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com
+    name: mongodb
+    version: 5.17.0
+  values:
+    # headless service configs
+    service:
+      clusterIP: None
+    port: 27017
+     
+    # mongodb replica set configuration
+    replicaSet:
+      replicas:
+        secondary: 1
+      pdb:
+        minAvailable:
+          primary: 1
+      enabled: true
+      name: mongo
+    
+    # mongodb k8s pods labels
+    podLabels:
+      role: mongo
+      environment: test
+    # mongodb persistence configurations
+    persistence:
+      mountPath: /bitnami/mongodb
+      enabled: true
+      storageClass: storage
+      accessMode: 
+        - "ReadWriteOnce"
+      size: <size of each replica set>Gi
