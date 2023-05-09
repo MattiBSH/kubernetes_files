@@ -2,24 +2,24 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-05-09 - 12:59:23 +0000
+    app.quarkus.io/build-timestamp: 2023-05-09 - 13:00:05 +0000
   labels:
-    app.kubernetes.io/name: case-delivery-service
     app.kubernetes.io/version: 1.0.1
+    app.kubernetes.io/name: case-delivery-service
   name: case-delivery-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app.kubernetes.io/name: case-delivery-service
       app.kubernetes.io/version: 1.0.1
+      app.kubernetes.io/name: case-delivery-service
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-05-09 - 12:59:23 +0000
+        app.quarkus.io/build-timestamp: 2023-05-09 - 13:00:05 +0000
       labels:
-        app.kubernetes.io/name: case-delivery-service
         app.kubernetes.io/version: 1.0.1
+        app.kubernetes.io/name: case-delivery-service
     spec:
       containers:
       - env:
@@ -41,7 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-05-09 - 12:59:23 +0000
+    app.quarkus.io/build-timestamp: 2023-05-09 - 13:00:05 +0000
   labels:
     app.kubernetes.io/name: case-delivery-service
     app.kubernetes.io/version: 1.0.1
