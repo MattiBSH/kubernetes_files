@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-05-11 - 18:00:49 +0000
+    app.quarkus.io/build-timestamp: 2023-05-11 - 18:09:47 +0000
   labels:
     app.kubernetes.io/name: kvittering-service
     app.kubernetes.io/version: 1.0.2
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-05-11 - 18:00:49 +0000
+        app.quarkus.io/build-timestamp: 2023-05-11 - 18:09:47 +0000
       labels:
         app.kubernetes.io/name: kvittering-service
         app.kubernetes.io/version: 1.0.2
@@ -41,7 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-05-11 - 18:00:49 +0000
+    app.quarkus.io/build-timestamp: 2023-05-11 - 18:09:47 +0000
   labels:
     app.kubernetes.io/name: kvittering-service
     app.kubernetes.io/version: 1.0.2
