@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-04-19 - 10:17:52 +0000
+    app.quarkus.io/build-timestamp: 2023-05-23 - 11:15:27 +0000
   labels:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
@@ -16,7 +16,7 @@ spec:
   template:
     metadata:
       annotations:
-        app.quarkus.io/build-timestamp: 2023-04-19 - 10:17:52 +0000
+        app.quarkus.io/build-timestamp: 2023-05-23 - 11:15:27 +0000
       labels:
         app.kubernetes.io/name: soap-service
         app.kubernetes.io/version: 1.0.4
@@ -41,7 +41,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    app.quarkus.io/build-timestamp: 2023-04-19 - 10:17:52 +0000
+    app.quarkus.io/build-timestamp: 2023-05-23 - 11:15:27 +0000
   labels:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
@@ -49,10 +49,11 @@ metadata:
 spec:
   ports:
   - name: http
+    nodePort: 32001
     port: 80
     protocol: TCP
     targetPort: 8080
   selector:
     app.kubernetes.io/name: soap-service
     app.kubernetes.io/version: 1.0.4
-  type: ClusterIP
+  type: NodePort
